@@ -9,7 +9,7 @@ Aplicação mobile para controle de presenças por disciplina. O aluno cadastra 
 |---|---|
 | Frontend | React Native (Expo), Context API, AsyncStorage, Axios |
 | Backend | Spring Boot, Spring Security (JWT), Spring Data JPA |
-| Banco de dados | MySQL 8 |
+| Banco de dados | MySQL |
 
 ## Pré-requisitos
 
