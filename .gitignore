@@ -1,0 +1,7 @@
+backend/target/
+*.class
+frontend/node_modules/
+.idea/
+.vscode/
+*.log
+.DS_Store
