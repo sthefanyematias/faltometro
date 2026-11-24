@@ -113,12 +113,6 @@ dias restantes = floor(horas restantes / 4)
 
 O sistema indica três estados: regular até 50% do limite, atenção entre 50% e 70%, e limite excedido acima de 70%, com aviso de reprovação por falta quando as horas ultrapassam o limite.
 
-## Integrantes
-
-| Nome completo | RM | Responsabilidades |
-|---|---|---|
-| _preencher_ | _RM_ | _preencher_ |
-
 ## Observações
 
 - A URL do túnel muda a cada reinício do `cloudflared`; ao reiniciar, atualize o `baseURL` em `frontend/src/api/api.js`.
