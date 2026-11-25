@@ -1,6 +1,6 @@
+
 package com.faltometro.faltometro.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,12 +15,19 @@ import com.faltometro.faltometro.service.DisciplinaService;
 @RequestMapping("/faltas")
 public class FaltaController {
 
-    @Autowired
-    private DisciplinaService disciplinaService;
+    private final DisciplinaService disciplinaService;
+
+    public FaltaController(DisciplinaService disciplinaService) {
+        this.disciplinaService = disciplinaService;
+    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Long id, @AuthenticationPrincipal Usuario usuario) {
+    public ResponseEntity<Void> excluir(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Usuario usuario) {
+
         disciplinaService.excluirFalta(id, usuario);
+
         return ResponseEntity.noContent().build();
     }
 }
