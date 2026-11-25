@@ -9,7 +9,7 @@ Aplicação mobile para controle de presenças por disciplina. O aluno cadastra 
 |---|---|
 | Frontend | React Native (Expo), Context API, AsyncStorage, Axios |
 | Backend | Spring Boot, Spring Security (JWT), Spring Data JPA |
-| Banco de dados | MySQL |
+| Banco de dados | MySQL 8 |
 
 ## Pré-requisitos
 
@@ -112,6 +112,15 @@ dias restantes = floor(horas restantes / 4)
 ```
 
 O sistema indica três estados: regular até 50% do limite, atenção entre 50% e 70%, e limite excedido acima de 70%, com aviso de reprovação por falta quando as horas ultrapassam o limite.
+
+## Integrantes
+
+| Nome completo | RM | Responsabilidades |
+|---|---|---|
+| Geovanna de Lima Novais | 1143171431 | Modelagem do banco de dados (entidades Usuario, Disciplina e Falta), repositórios JPA, CRUD de disciplinas e faltas nos controllers e services, e implementação da regra de cálculo do limite de 25% da carga horária |
+| Guilherme dos Santos Araújo | 1143152757 | Autenticação e segurança: geração e validação do token JWT, configuração do Spring Security, filtro de autenticação por requisição, criptografia de senha com BCrypt e endpoints de login e cadastro |
+| Patrícia de Queiroz Oliveira | 1143083560 | Telas de login e cadastro em React Native, tema visual do aplicativo, componentes reutilizáveis (botão e campo de texto), gerenciamento de estado com Context API e persistência do token com AsyncStorage |
+| Sthefany Evangelista Matias | 1141327712 | Telas de listagem, formulário e detalhe da disciplina, navegação entre telas com transição animada, cálculo de dias de falta, validação de datas no padrão brasileiro, README e documentação do projeto |
 
 ## Observações
 
