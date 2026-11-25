@@ -1,8 +1,9 @@
+
 package com.faltometro.faltometro.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,50 +26,62 @@ import com.faltometro.faltometro.service.DisciplinaService;
 @RequestMapping("/disciplinas")
 public class DisciplinaController {
 
-    @Autowired
-    private DisciplinaService disciplinaService;
+    private final DisciplinaService disciplinaService;
+
+    public DisciplinaController(DisciplinaService disciplinaService) {
+        this.disciplinaService = disciplinaService;
+    }
 
     @GetMapping
-    public List<DisciplinaResponse> listar(@AuthenticationPrincipal Usuario usuario) {
+    public List<DisciplinaResponse> listar(
+            @AuthenticationPrincipal Usuario usuario) {
         return disciplinaService.listar(usuario);
     }
 
     @GetMapping("/{id}")
-    public DisciplinaResponse buscar(@PathVariable Long id,
-                                     @AuthenticationPrincipal Usuario usuario) {
+    public DisciplinaResponse buscar(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Usuario usuario) {
         return disciplinaService.buscar(id, usuario);
     }
 
     @PostMapping
-    public ResponseEntity<DisciplinaResponse> criar(@RequestBody DadosDisciplina dados,
-                                                    @AuthenticationPrincipal Usuario usuario) {
-        return ResponseEntity.status(201).body(disciplinaService.criar(dados, usuario));
+    public ResponseEntity<DisciplinaResponse> criar(
+            @RequestBody DadosDisciplina dados,
+            @AuthenticationPrincipal Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(disciplinaService.criar(dados, usuario));
     }
 
     @PutMapping("/{id}")
-    public DisciplinaResponse atualizar(@PathVariable Long id,
-                                        @RequestBody DadosDisciplina dados,
-                                        @AuthenticationPrincipal Usuario usuario) {
+    public DisciplinaResponse atualizar(
+            @PathVariable Long id,
+            @RequestBody DadosDisciplina dados,
+            @AuthenticationPrincipal Usuario usuario) {
         return disciplinaService.atualizar(id, dados, usuario);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Long id,
-                                        @AuthenticationPrincipal Usuario usuario) {
+    public ResponseEntity<Void> excluir(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Usuario usuario) {
         disciplinaService.excluir(id, usuario);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}/faltas")
-    public List<FaltaResponse> listarFaltas(@PathVariable Long id,
-                                            @AuthenticationPrincipal Usuario usuario) {
+    public List<FaltaResponse> listarFaltas(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Usuario usuario) {
         return disciplinaService.listarFaltas(id, usuario);
     }
 
     @PostMapping("/{id}/faltas")
-    public ResponseEntity<FaltaResponse> registrarFalta(@PathVariable Long id,
-                                                        @RequestBody DadosFalta dados,
-                                                        @AuthenticationPrincipal Usuario usuario) {
-        return ResponseEntity.status(201).body(disciplinaService.registrarFalta(id, dados, usuario));
+    public ResponseEntity<FaltaResponse> registrarFalta(
+            @PathVariable Long id,
+            @RequestBody DadosFalta dados,
+            @AuthenticationPrincipal Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(disciplinaService.registrarFalta(id, dados, usuario));
     }
 }
